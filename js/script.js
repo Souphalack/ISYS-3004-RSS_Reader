@@ -40,6 +40,15 @@ function addRSStoDOM(data) {
     itemsContainer.appendChild(itemContainer);
   }
 
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function (){
+    if (xhr.status >= 200 && xhr.status < 300){
+      console.log("Success!")
+    } else{
+      console.log("The request failed")
+    }
+  }
+
   // So the RSS feed is complete, lets build a title RSS source
   let titleElement = document.createElement('H1');
   titleElement.innerText = data.feed.title;
@@ -68,5 +77,6 @@ function onAddRSSClicked(event) {
   xhr.open('GET', 'https://api.rss2json.com/v1/api.json?rss_url=' + URL);
   xhr.send();
 }
+
 
 addFeedButton.addEventListener('click', onAddRSSClicked);
