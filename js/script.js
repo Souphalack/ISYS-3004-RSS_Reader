@@ -1,13 +1,4 @@
-// The following JavaScript is 'part' of today's lessons.  The concepts below
-// have already either been implements in previous examples, or are a different
-// way to do something we have already discussed.  The JavaScript is provide
-// for self-study and review.
-//
-// Last time we use a 'template' this time we will build the DOM fragment
-// and insert into the DOM tree.  RSS feeds follow a similar structure
-// Each has has a title, link and description fields.  The following
-// function creates the corresponding HTML5 elements and inserts
-// them into the DOM tree.
+
 function addRSStoDOM(data) {
   // Create the 'outer' container to hold everything
   let itemsContainer = document.createElement('DIV');
@@ -40,19 +31,6 @@ function addRSStoDOM(data) {
     itemsContainer.appendChild(itemContainer);
   }
 
-  var content = document.getElementsByTagName('main')[0];
-
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function (){
-    if (xhr.status >= 200 && xhr.status < 300){
-      json = JSON.parse(xhr.responseText)
-      console.log("json")
-    }else{
-      console.log("The request failed")
-      content.innerHTML = "The request failed, please check your RSS url"
-    }
-  }
-
 
   // So the RSS feed is complete, lets build a title RSS source
   let titleElement = document.createElement('H1');
@@ -62,6 +40,19 @@ function addRSStoDOM(data) {
   // lets add them to the main DOM.
   content.appendChild(titleElement);
   content.appendChild(itemsContainer);
+}
+
+var content = document.getElementsByTagName('main')[0];
+
+var xhr = new XMLHttpRequest();
+xhr.onload = function () {
+  if (xhr.status >= 200 && xhr.status < 300){
+    json = JSON.parse(xhr.responseText)
+    console.log("json")
+  }else{
+    console.log("The request failed")
+    content.innerHTML = "The request failed, please check your RSS url"
+  }
 }
 
 // The following gets the ADD RSS button to work.  This is a very similar
