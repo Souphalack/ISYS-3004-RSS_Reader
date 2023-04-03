@@ -40,15 +40,19 @@ function addRSStoDOM(data) {
     itemsContainer.appendChild(itemContainer);
   }
 
+  var content = document.getElementsByTagName('main')[0];
+
   var xhr = new XMLHttpRequest();
   xhr.onload = function (){
     if (xhr.status >= 200 && xhr.status < 300){
       json = JSON.parse(xhr.responseText)
-      console.log("Success!")
+      console.log("json")
     }else{
       console.log("The request failed")
+      content.innerHTML = "The request failed, please check your RSS url"
     }
   }
+
 
   // So the RSS feed is complete, lets build a title RSS source
   let titleElement = document.createElement('H1');
