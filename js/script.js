@@ -45,20 +45,18 @@ function addRSStoDOM(data) {
 var content = document.getElementsByTagName('main')[0];
 
 var xhr = new XMLHttpRequest();
+
 xhr.onload = function () {
   if (xhr.status >= 200 && xhr.status < 300){
     json = JSON.parse(xhr.responseText)
     console.log("json")
-  }else{
+    addRSStoDOM("json")
+  } else{
     console.log("The request failed")
     content.innerHTML = "The request failed, please check your RSS url"
   }
 }
 
-// The following gets the ADD RSS button to work.  This is a very similar
-// process that we did in the ToDo application.  Find the elements in
-// the HTML, then write a function to handle the element/event, then add
-// the event listener.
 let addFeedButton = document.getElementById("add-feed");
 let newRSSInput = document.getElementById("rss-input");
 
