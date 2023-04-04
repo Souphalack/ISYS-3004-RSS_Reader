@@ -44,13 +44,15 @@ function addRSStoDOM(data) {
 
 var content = document.getElementsByTagName('main')[0];
 
+// Create a blank XHR object 
 var xhr = new XMLHttpRequest();
 
+//Create Onload function that will get called 
 xhr.onload = function () {
   if (xhr.status >= 200 && xhr.status < 300){
     json = JSON.parse(xhr.responseText)
-    console.log("json")
-    addRSStoDOM("json")
+    console.log(json)
+    addRSStoDOM(json)
   } else{
     console.log("The request failed")
     content.innerHTML = "The request failed, please check your RSS url"
